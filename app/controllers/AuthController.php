@@ -25,10 +25,10 @@ class AuthController extends BaseController {
         if (Auth::attempt($data, Input::get('remember'))) // Como segundo parámetro pasámos el checkbox para sabes si queremos recordar la contraseña
         {
             // Si nuestros datos son correctos mostramos la página de inicio
-
             return Redirect::intended('/');
         }
         // Si los datos no son los correctos volvemos al login y mostramos un error
+        return Auth::check();
         return Redirect::back()->with('error_message', 'Los datos ingresados son incorrectos')->withInput();
     }
 
